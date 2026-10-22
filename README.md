@@ -8,6 +8,8 @@ Expensify needs this behavior for its [migration from an inverted list to chrono
 
 Install the dependencies in `ReproducerApp`, start its development server, and run its Android app. The project uses the standard React Native CLI `start` and `android` package scripts. See the [React Native environment setup](https://reactnative.dev/docs/set-up-your-environment) for Android prerequisites.
 
+To use RNTester, copy [RNTesterPlayground.js](RNTesterPlayground.js) over `packages/rn-tester/js/examples/Playground/RNTesterPlayground.js` in a React Native checkout. Build RNTester and open its Playground.
+
 ## Reproduce the z-index bug
 
 1. Tap **Scroll to row 6**. The offset should read 600.
