@@ -1,0 +1,21 @@
+diff --git a/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/MaintainVisibleScrollPositionHelper.kt b/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/MaintainVisibleScrollPositionHelper.kt
+--- a/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/MaintainVisibleScrollPositionHelper.kt
++++ b/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/views/scroll/MaintainVisibleScrollPositionHelper.kt
+@@ -157,6 +157,17 @@
+       // Compute the position of the end of the child
+       val position = if (horizontal) child.x + child.width else child.y + child.height
+ 
++      // Preserve a positioned zero-sized anchor before comparing its enclosing content wrapper.
++      if (
++          i == config.minIndexForVisible &&
++              child.width == 0 &&
++              child.height == 0 &&
++              position > currentScroll
++      ) {
++        firstVisibleView = child
++        break
++      }
++
+       // If the child is partially visible or this is the last child, select it as the anchor.
+       if ((position > currentScroll && position < firstVisibleViewPosition) ||
+           (firstVisibleView == null && i == subviews.size - 1)) {
